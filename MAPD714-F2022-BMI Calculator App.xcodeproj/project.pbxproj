@@ -15,6 +15,8 @@
 		856D139429465E3D00FDD3B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 856D139329465E3D00FDD3B9 /* Assets.xcassets */; };
 		856D139729465E3D00FDD3B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 856D139529465E3D00FDD3B9 /* LaunchScreen.storyboard */; };
 		856D139F29466BD700FDD3B9 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D139E29466BD700FDD3B9 /* HomeScreenViewController.swift */; };
+		856D13A12946D17300FDD3B9 /* TrackingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */; };
+		856D13A32946D76700FDD3B9 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		856D139629465E3D00FDD3B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		856D139829465E3D00FDD3B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		856D139E29466BD700FDD3B9 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
+		856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingScreenViewController.swift; sourceTree = "<group>"; };
+		856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +67,14 @@
 				856D138729465E3C00FDD3B9 /* AppDelegate.swift */,
 				856D138929465E3C00FDD3B9 /* SceneDelegate.swift */,
 				856D138B29465E3C00FDD3B9 /* ViewController.swift */,
+				856D139E29466BD700FDD3B9 /* HomeScreenViewController.swift */,
+				856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */,
+				856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */,
 				856D138D29465E3C00FDD3B9 /* Main.storyboard */,
 				856D139329465E3D00FDD3B9 /* Assets.xcassets */,
 				856D139529465E3D00FDD3B9 /* LaunchScreen.storyboard */,
 				856D139829465E3D00FDD3B9 /* Info.plist */,
 				856D139029465E3C00FDD3B9 /* MAPD714_F2022_BMI_Calculator_App.xcdatamodeld */,
-				856D139E29466BD700FDD3B9 /* HomeScreenViewController.swift */,
 			);
 			path = "MAPD714-F2022-BMI Calculator App";
 			sourceTree = "<group>";
@@ -147,6 +153,8 @@
 				856D138C29465E3C00FDD3B9 /* ViewController.swift in Sources */,
 				856D138829465E3C00FDD3B9 /* AppDelegate.swift in Sources */,
 				856D139229465E3C00FDD3B9 /* MAPD714_F2022_BMI_Calculator_App.xcdatamodeld in Sources */,
+				856D13A32946D76700FDD3B9 /* CustomTableViewCell.swift in Sources */,
+				856D13A12946D17300FDD3B9 /* TrackingScreenViewController.swift in Sources */,
 				856D138A29465E3C00FDD3B9 /* SceneDelegate.swift in Sources */,
 				856D139F29466BD700FDD3B9 /* HomeScreenViewController.swift in Sources */,
 			);

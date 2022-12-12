@@ -1,9 +1,10 @@
-//
-//  ViewController.swift
-//  MAPD714-F2022-BMI Calculator App
-//
-//  Created by Muhammad Bilal Dilbar on 2022-12-11.
-//
+//  Final Test - BMI Calculator App
+//  Author's name and StudentID:
+//  Name: Muhammad Bilal Dilbar Hussain
+//  Student ID: 301205152
+//  Dated: 16/Dec/2022
+//  App description: A BMI Calculator App
+//  Xcode Version : Version 14.1 (14B47b)
 
 import UIKit
 
