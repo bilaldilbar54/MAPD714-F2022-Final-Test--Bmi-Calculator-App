@@ -10,7 +10,8 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
+    static let shared = AppDelegate()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -60,6 +61,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         return container
     }()
+    
+    func bmi(name: String, age: Int16, gender: String, weight: Float, height: Float, date: String, unitSelected: String) -> BmiRecord{
+        let record = BmiRecord(context: persistentContainer.viewContext)
+        record.name = name
+        record.age = age
+        record.gender = gender
+        record.weight = weight
+        record.height = height
+        record.date = date
+        record.unitSelected = unitSelected
+        
+        return record
+    }
+    
+    func record() -> [BmiRecord] {
+        let request: NSFetchRequest<BmiRecord> = BmiRecord.fetchRequest()
+        var fetchRecords: [BmiRecord] = []
+        
+        do {
+            fetchRecords = try persistentContainer.viewContext.fetch(request)
+        } catch {
+            print("Error fetching records")
+        }
+        return fetchRecords
+    }
 
     // MARK: - Core Data Saving support
 
@@ -75,6 +101,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }
         }
+    }
+    
+    func deleteContext(item: BmiRecord)
+    {
+        let context = persistentContainer.viewContext
+        context.delete(item)
+        //print("Delete Done")
+        saveContext()
     }
 
 }

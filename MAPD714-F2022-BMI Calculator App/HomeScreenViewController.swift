@@ -10,7 +10,6 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
     
-    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var genderField: UITextField!
@@ -21,18 +20,30 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var bmiCategoryField: UILabel!
     @IBOutlet weak var calculateButton: UIButton!
     
+    var records: [BmiRecord] = []
     var weight: Float = 0.0
     var height: Float = 0.0
     var bmiVal: Float = 0.0
+    var date: String = ""
+    var unitSwitchVal: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         weightField.text = "0.0"
         heightField.text = "0.0"
         unitSwitch.isOn = false
         bmiScoreField.text = ""
         bmiCategoryField.text = ""
+        
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let dateString = formatter.string(from: now)
+        date = dateString
+        
     }
     
     func bmiCategory (bmiVal: Float) {
@@ -63,16 +74,25 @@ class HomeScreenViewController: UIViewController {
         
         if (unitSwitch.isOn) {
             //Imperial Calculation
-            bmiVal = ((weight) / (height * height)) * 703
-            bmiScoreField.text = String(bmiVal)
-            self.bmiCategory(bmiVal: bmiVal)
+            unitSwitchVal = "Imperial"
+            if (weight != 0.0 && height != 0.0) {
+                bmiVal = ((weight) / (height * height)) * 703
+                bmiScoreField.text = String(bmiVal)
+                self.bmiCategory(bmiVal: bmiVal)
+            }
         } else {
             //Metric Calculation
-            bmiVal = (weight) / (height * height)
-            bmiScoreField.text = String(bmiVal)
-            self.bmiCategory(bmiVal: bmiVal)
+            unitSwitchVal = "Metric"
+            if (weight != 0.0 && height != 0.0) {
+                bmiVal = (weight) / (height * height)
+                bmiScoreField.text = String(bmiVal)
+                self.bmiCategory(bmiVal: bmiVal)
+            }
         }
+        
+        let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: Float(weightField.text!)!, height: Float(heightField.text!)!, date: date, unitSelected: unitSwitchVal)
+        records.append(record)
+        AppDelegate.shared.saveContext()
     }
-    
 }
 
