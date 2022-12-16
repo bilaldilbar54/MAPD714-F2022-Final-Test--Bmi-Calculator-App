@@ -17,9 +17,6 @@ class TrackingScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
-        backgroundView.backgroundColor = UIColor.cyan
-            self.tableView.backgroundView = backgroundView
         records = AppDelegate.shared.record()
         tableView.reloadData()
     }
@@ -50,21 +47,42 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath ) as! CustomTableViewCell
         let record = records[indexPath.section]
         cell.weightLabel.text = String(record.weight)
-        cell.bmiLabel.text = "35"
+        cell.bmiLabel.text = String(record.bmiVal)
         cell.dateLabel.text = record.date
         
-        cell.contentView.layer.cornerRadius = 20
         cell.contentView.layer.borderWidth = 1
-        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: self.tableView.bounds.size.height))
-        backgroundView.backgroundColor = UIColor.cyan
-        cell.backgroundView = backgroundView
         
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if  segue.identifier == "EditItem"
+        {
+            let controller = segue.destination as! UpdateRecordViewController
+            //controller.delegate = self
+            controller.record = sender as? BmiRecord
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let update = UIContextualAction(style: .normal, title: "Update")
+        {
+            action, view , update in
+            print("Update")
+            self.performSegue(withIdentifier: "EditItem", sender:self.records[indexPath.section])
+            update(false)
+        }
+        let image = UIImage(systemName: "square.and.pencil")
+        update.image = image
+        update.backgroundColor = .systemFill
+        return UISwipeActionsConfiguration(actions: [update])
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let delete = UIContextualAction(style: .destructive, title: "Deleted") {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") {
             action, view , delete in
             let record = self.records[indexPath.section]
             AppDelegate.shared.deleteContext(item: record)
@@ -74,7 +92,8 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
             self.tableView.reloadData()
             delete(false)
         }
-        delete.backgroundColor = UIColor(red: 1, green: 0,  blue: 0, alpha: 1)
+        let image = UIImage(systemName: "trash.fill")
+        delete.image = image
         return UISwipeActionsConfiguration(actions: [delete])
     }
 }

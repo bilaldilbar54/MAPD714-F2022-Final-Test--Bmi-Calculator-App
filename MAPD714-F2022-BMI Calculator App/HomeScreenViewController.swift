@@ -21,18 +21,15 @@ class HomeScreenViewController: UIViewController {
     @IBOutlet weak var calculateButton: UIButton!
     
     var records: [BmiRecord] = []
-    var weight: Float = 0.0
-    var height: Float = 0.0
-    var bmiVal: Float = 0.0
+    //var weight: Double = 0.0
+    //var height: Double = 0.0
+    var bmiVal: Double = 0.0
     var date: String = ""
     var unitSwitchVal: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        weightField.text = "0.0"
-        heightField.text = "0.0"
         unitSwitch.isOn = false
         bmiScoreField.text = ""
         bmiCategoryField.text = ""
@@ -40,13 +37,13 @@ class HomeScreenViewController: UIViewController {
         let now = Date()
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = formatter.string(from: now)
         date = dateString
         
     }
     
-    func bmiCategory (bmiVal: Float) {
+    func bmiCategory (bmiVal: Double) {
         if (bmiVal < 16) {
             bmiCategoryField.text = "Severe Thinness"
         } else if (bmiVal >= 16 && bmiVal < 17) {
@@ -69,28 +66,32 @@ class HomeScreenViewController: UIViewController {
 
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         
-        weight = Float(weightField.text!)!
-        height = Float(heightField.text!)!
+        guard let weight = weightField.text else {
+            return
+        }
+        guard let height = heightField.text else {
+            return
+        }
         
         if (unitSwitch.isOn) {
             //Imperial Calculation
             unitSwitchVal = "Imperial"
-            if (weight != 0.0 && height != 0.0) {
-                bmiVal = ((weight) / (height * height)) * 703
+            if (Double(weight) != 0.0 && Double(height) != 0.0) {
+                bmiVal = ((Double(weight)! / (Double(height)! * Double(height)!))) * 703
                 bmiScoreField.text = String(bmiVal)
                 self.bmiCategory(bmiVal: bmiVal)
             }
         } else {
             //Metric Calculation
             unitSwitchVal = "Metric"
-            if (weight != 0.0 && height != 0.0) {
-                bmiVal = (weight) / (height * height)
+            if (Double(weight) != 0.0 && Double(height) != 0.0) {
+                bmiVal = Double(weight)! / (Double(height)! * Double(height)!)
                 bmiScoreField.text = String(bmiVal)
                 self.bmiCategory(bmiVal: bmiVal)
             }
         }
         
-        let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: Float(weightField.text!)!, height: Float(heightField.text!)!, date: date, unitSelected: unitSwitchVal)
+        let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: Double(weightField.text!)!, height: Double(heightField.text!)!, date: date, unitSelected: unitSwitchVal, bmiVal: bmiVal)
         records.append(record)
         AppDelegate.shared.saveContext()
     }

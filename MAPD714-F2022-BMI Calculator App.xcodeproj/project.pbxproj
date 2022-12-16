@@ -18,6 +18,8 @@
 		856D13A12946D17300FDD3B9 /* TrackingScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */; };
 		856D13A32946D76700FDD3B9 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */; };
 		856D13A5294AC5FC00FDD3B9 /* BmiRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856D13A4294AC5FC00FDD3B9 /* BmiRecord.swift */; };
+		858B5084294BC6020097E0FD /* NewRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B5083294BC6020097E0FD /* NewRecordViewController.swift */; };
+		858B5086294BCB820097E0FD /* UpdateRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858B5085294BCB820097E0FD /* UpdateRecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingScreenViewController.swift; sourceTree = "<group>"; };
 		856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		856D13A4294AC5FC00FDD3B9 /* BmiRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiRecord.swift; sourceTree = "<group>"; };
+		858B5083294BC6020097E0FD /* NewRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRecordViewController.swift; sourceTree = "<group>"; };
+		858B5085294BCB820097E0FD /* UpdateRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateRecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				856D139829465E3D00FDD3B9 /* Info.plist */,
 				856D139029465E3C00FDD3B9 /* MAPD714_F2022_BMI_Calculator_App.xcdatamodeld */,
 				856D13A4294AC5FC00FDD3B9 /* BmiRecord.swift */,
+				858B5083294BC6020097E0FD /* NewRecordViewController.swift */,
+				858B5085294BCB820097E0FD /* UpdateRecordViewController.swift */,
 			);
 			path = "MAPD714-F2022-BMI Calculator App";
 			sourceTree = "<group>";
@@ -155,7 +161,9 @@
 			files = (
 				856D138C29465E3C00FDD3B9 /* ViewController.swift in Sources */,
 				856D13A5294AC5FC00FDD3B9 /* BmiRecord.swift in Sources */,
+				858B5086294BCB820097E0FD /* UpdateRecordViewController.swift in Sources */,
 				856D138829465E3C00FDD3B9 /* AppDelegate.swift in Sources */,
+				858B5084294BC6020097E0FD /* NewRecordViewController.swift in Sources */,
 				856D139229465E3C00FDD3B9 /* MAPD714_F2022_BMI_Calculator_App.xcdatamodeld in Sources */,
 				856D13A32946D76700FDD3B9 /* CustomTableViewCell.swift in Sources */,
 				856D13A12946D17300FDD3B9 /* TrackingScreenViewController.swift in Sources */,

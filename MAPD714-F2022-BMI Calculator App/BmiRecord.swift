@@ -11,8 +11,9 @@ struct BmiRec {
     var name: String
     var age: Int16
     var gender: String
-    var height: Float
-    var weight: Float
+    var height: Double
+    var weight: Double
     var unitSelected: String
     var date: String
+    var bmiVal: Double
 }

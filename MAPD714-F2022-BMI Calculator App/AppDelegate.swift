@@ -1,9 +1,10 @@
-//
-//  AppDelegate.swift
-//  MAPD714-F2022-BMI Calculator App
-//
-//  Created by Muhammad Bilal Dilbar on 2022-12-11.
-//
+//  Final Test - BMI Calculator App
+//  Author's name and StudentID:
+//  Name: Muhammad Bilal Dilbar Hussain
+//  Student ID: 301205152
+//  Dated: 16/Dec/2022
+//  App description: A BMI Calculator App
+//  Xcode Version : Version 14.1 (14B47b)
 
 import UIKit
 import CoreData
@@ -62,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return container
     }()
     
-    func bmi(name: String, age: Int16, gender: String, weight: Float, height: Float, date: String, unitSelected: String) -> BmiRecord{
+    func bmi(name: String, age: Int16, gender: String, weight: Double, height: Double, date: String, unitSelected: String, bmiVal: Double) -> BmiRecord{
         let record = BmiRecord(context: persistentContainer.viewContext)
         record.name = name
         record.age = age
@@ -71,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         record.height = height
         record.date = date
         record.unitSelected = unitSelected
+        record.bmiVal = bmiVal
         
         return record
     }
