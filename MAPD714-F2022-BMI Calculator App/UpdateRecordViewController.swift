@@ -46,18 +46,22 @@ class UpdateRecordViewController: UIViewController {
         
         if (unitSwitchVal == "Metric") {
             if (weight != 0.0 && height != 0.0) {
-                bmiVal = (weight) / (height * height)
-                print(bmiVal)
-                print(height)
+                let heightMtr = height / 100
+                bmiVal = (weight) / (heightMtr * heightMtr)
+                bmiVal = (ceil(bmiVal * 1000)) / 1000
+                record?.weight = weight
+                record?.date = date
+                record?.bmiVal = bmiVal
             }
-                
-            //record?.weight = weight
-            //record?.date = date
+        } else {
+            if (weight != 0.0 && height != 0.0) {
+                bmiVal = ((weight * 703) / (height * height))
+                bmiVal = (ceil(bmiVal * 1000)) / 1000
+                record?.weight = weight
+                record?.date = date
+                record?.bmiVal = bmiVal
+            }
+            AppDelegate.shared.saveContext()
         }
-        
-        AppDelegate.shared.saveContext()
-        
     }
-    
-
 }

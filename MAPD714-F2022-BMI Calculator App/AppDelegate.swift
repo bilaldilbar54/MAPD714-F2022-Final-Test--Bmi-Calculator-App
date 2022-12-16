@@ -77,6 +77,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return record
     }
     
+    func bmiNew(weight: Double, height: Double, date: String, bmiVal: Double, unitSelected: String) -> BmiRecord{
+        let record = BmiRecord(context: persistentContainer.viewContext)
+        record.weight = weight
+        record.height = height
+        record.date = date
+        record.bmiVal = bmiVal
+        record.unitSelected = unitSelected
+        
+        return record
+    }
+    
     func record() -> [BmiRecord] {
         let request: NSFetchRequest<BmiRecord> = BmiRecord.fetchRequest()
         var fetchRecords: [BmiRecord] = []

@@ -9,10 +9,10 @@
 import UIKit
 
 class TrackingScreenViewController: UIViewController {
-    
-    var records: [BmiRecord] = []
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var records: [BmiRecord] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +21,8 @@ class TrackingScreenViewController: UIViewController {
         tableView.reloadData()
     }
     
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        if let indexPath = tableView.indexPathForSelectedRow {
-            let record = self.records[indexPath.section]
-            AppDelegate.shared.deleteContext(item: record)
-            print("Delete Done")
-            AppDelegate.shared.saveContext()
-            self.records = AppDelegate.shared.record()
-            self.tableView.reloadData()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 }
 
@@ -57,12 +50,16 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if  segue.identifier == "EditItem"
-        {
+        if (segue.identifier == "EditItem") {
             let controller = segue.destination as! UpdateRecordViewController
             //controller.delegate = self
             controller.record = sender as? BmiRecord
         }
+        
+        if (segue.identifier == "Home") {
+            let controller = segue.destination as! HomeScreenViewController
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
@@ -90,6 +87,9 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
             AppDelegate.shared.saveContext()
             self.records = AppDelegate.shared.record()
             self.tableView.reloadData()
+            if (self.records.isEmpty) {
+                self.performSegue(withIdentifier: "Home", sender: self)
+            }
             delete(false)
         }
         let image = UIImage(systemName: "trash.fill")

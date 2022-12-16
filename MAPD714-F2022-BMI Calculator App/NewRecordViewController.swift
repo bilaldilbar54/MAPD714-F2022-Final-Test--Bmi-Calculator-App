@@ -27,20 +27,29 @@ class NewRecordViewController: UIViewController {
         
         newHeightTextField.text = "0.0"
         newWeightTextField.text = "0.0"
+        unitSwitchVal = "Metric"
         
         let now = Date()
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = formatter.string(from: now)
         date = dateString
         
-        //let record = records[IndexPath.section]
-        //unitSwitchVal = record.unitSelected
-
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
+        weight = Double(newWeightTextField.text!)!
+        height = Double(newHeightTextField.text!)!
+        
+        if (weight != 0.0 && height != 0.0) {
+            let heightMtr = height / 100
+            bmiVal = (weight / (heightMtr * heightMtr))
+            bmiVal = (ceil(bmiVal * 1000)) / 1000
+            
+            let record = AppDelegate.shared.bmiNew(weight: weight, height: height, date: date, bmiVal: bmiVal, unitSelected: unitSwitchVal)
+            records.append(record)
+            AppDelegate.shared.saveContext()
+        }
     }
-    
 }
