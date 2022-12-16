@@ -25,8 +25,6 @@ class NewRecordViewController: UIViewController {
         
         records = AppDelegate.shared.record()
         
-        newHeightTextField.text = "0.0"
-        newWeightTextField.text = "0.0"
         unitSwitchVal = "Metric"
         
         let now = Date()
@@ -35,12 +33,16 @@ class NewRecordViewController: UIViewController {
         formatter.dateFormat = "dd-MM-yyyy HH:mm"
         let dateString = formatter.string(from: now)
         date = dateString
-        
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        weight = Double(newWeightTextField.text!)!
-        height = Double(newHeightTextField.text!)!
+        if newWeightTextField.text != "" {
+            weight = Double(newWeightTextField.text!)!
+        }
+        
+        if newHeightTextField.text != "" {
+            height = Double(newHeightTextField.text!)!
+        }
         
         if (weight != 0.0 && height != 0.0) {
             let heightMtr = height / 100

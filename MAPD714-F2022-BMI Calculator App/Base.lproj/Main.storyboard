@@ -24,16 +24,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title=""/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTg-G9-eU8">
-                                <rect key="frame" x="328" y="127" width="49" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="plus.app.fill" catalog="system" title="">
-                                    <color key="baseForegroundColor" red="0.21176470589999999" green="0.1137254902" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <segue destination="UUc-6u-nSl" kind="showDetail" id="kDP-XZ-vfO"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI TRACKING SCREEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDx-ar-lAo">
                                 <rect key="frame" x="73" y="88" width="247" height="27"/>
                                 <constraints>
@@ -150,6 +140,16 @@
                                     <outlet property="delegate" destination="puT-Jq-1SZ" id="7jH-aT-crs"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTg-G9-eU8">
+                                <rect key="frame" x="328" y="127" width="49" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.app.fill" catalog="system" title="">
+                                    <color key="baseForegroundColor" red="0.21176470589999999" green="0.1137254902" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <segue destination="UUc-6u-nSl" kind="show" id="kDP-XZ-vfO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Ni-fz-zV7"/>
                         <color key="backgroundColor" red="0.9882352941176471" green="0.52941176470588236" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -162,7 +162,7 @@
                             <constraint firstItem="qDx-ar-lAo" firstAttribute="top" secondItem="8Ni-fz-zV7" secondAttribute="top" constant="29" id="SrS-DH-2Wb"/>
                             <constraint firstItem="K4l-yG-Lvl" firstAttribute="leading" secondItem="8Ni-fz-zV7" secondAttribute="leading" constant="9" id="UVs-eJ-VDE"/>
                             <constraint firstItem="MTg-G9-eU8" firstAttribute="top" secondItem="bb6-dx-sEV" secondAttribute="bottom" constant="82" id="edb-jO-wOh"/>
-                            <constraint firstItem="K4l-yG-Lvl" firstAttribute="top" secondItem="MTg-G9-eU8" secondAttribute="bottom" constant="8" symbolic="YES" id="l93-gp-jQl"/>
+                            <constraint firstItem="K4l-yG-Lvl" firstAttribute="top" secondItem="MTg-G9-eU8" secondAttribute="bottom" constant="8" id="l93-gp-jQl"/>
                             <constraint firstItem="bb6-dx-sEV" firstAttribute="top" secondItem="8Ni-fz-zV7" secondAttribute="top" constant="-28" id="uEY-Pg-n2P"/>
                             <constraint firstItem="K4l-yG-Lvl" firstAttribute="trailing" secondItem="8Ni-fz-zV7" secondAttribute="trailing" constant="-7" id="xjF-th-4XE"/>
                         </constraints>
@@ -171,13 +171,13 @@
                     <navigationItem key="navigationItem" id="uER-Ts-Ebb"/>
                     <connections>
                         <outlet property="tableView" destination="K4l-yG-Lvl" id="hho-vH-Q4U"/>
-                        <segue destination="fuR-b9-x7p" kind="show" identifier="EditItem" id="hJG-9y-d6Y"/>
+                        <segue destination="fuR-b9-x7p" kind="show" identifier="UpdateRecord" id="hJG-9y-d6Y"/>
                         <segue destination="W2K-4r-Rxv" kind="presentation" identifier="Home" modalPresentationStyle="currentContext" id="NGi-4c-sio"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZl-G5-AIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="462" y="454"/>
+            <point key="canvasLocation" x="-89" y="418"/>
         </scene>
         <!--Update Record View Controller-->
         <scene sceneID="opS-zL-nS6">
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mj4-Hd-l8Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="239"/>
+            <point key="canvasLocation" x="1305" y="551"/>
         </scene>
         <!--Home Screen-->
         <scene sceneID="Ybd-gX-ets">
@@ -553,7 +553,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Q9-wd-A20" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="765.64885496183206" y="-478.16901408450707"/>
+            <point key="canvasLocation" x="-89" y="-494"/>
         </scene>
         <!--New Record View Controller-->
         <scene sceneID="KnC-SD-3gu">
@@ -607,6 +607,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="submitButtonPressed:" destination="UUc-6u-nSl" eventType="touchUpInside" id="NyJ-EJ-6jz"/>
+                                    <segue destination="puT-Jq-1SZ" kind="show" id="0gt-yR-82J"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -634,6 +635,7 @@
                             <constraint firstItem="zVe-M2-IMc" firstAttribute="top" secondItem="Nzg-2O-II1" secondAttribute="bottom" constant="51" id="zfh-xQ-D7k"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="GWY-V8-5zW"/>
                     <connections>
                         <outlet property="newHeightTextField" destination="yfy-Hg-WsJ" id="HVY-qN-bXz"/>
                         <outlet property="newWeightTextField" destination="em1-6X-3Pc" id="h9V-Cx-DWc"/>
@@ -641,7 +643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G56-ie-8ER" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1749" y="-440"/>
+            <point key="canvasLocation" x="1305" y="-607"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Cy7-vB-gZS">
@@ -661,12 +663,12 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Leb-0b-D9L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-140" y="-122"/>
+            <point key="canvasLocation" x="-1265" y="-58"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="NGi-4c-sio"/>
-        <segue reference="5NB-SD-1Vm"/>
+        <segue reference="0gt-yR-82J"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="figure.track.and.field" catalog="system" width="115" height="128"/>

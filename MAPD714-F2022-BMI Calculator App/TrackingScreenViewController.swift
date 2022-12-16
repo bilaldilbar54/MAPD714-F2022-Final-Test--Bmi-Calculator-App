@@ -21,7 +21,8 @@ class TrackingScreenViewController: UIViewController {
         tableView.reloadData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        records = AppDelegate.shared.record()
         tableView.reloadData()
     }
 }
@@ -48,9 +49,8 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
-        if (segue.identifier == "EditItem") {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "UpdateRecord") {
             let controller = segue.destination as! UpdateRecordViewController
             //controller.delegate = self
             controller.record = sender as? BmiRecord
@@ -59,16 +59,12 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
         if (segue.identifier == "Home") {
             let controller = segue.destination as! HomeScreenViewController
         }
-        
     }
     
-    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        let update = UIContextualAction(style: .normal, title: "Update")
-        {
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let update = UIContextualAction(style: .normal, title: "Update") {
             action, view , update in
-            print("Update")
-            self.performSegue(withIdentifier: "EditItem", sender:self.records[indexPath.section])
+            self.performSegue(withIdentifier: "UpdateRecord", sender:self.records[indexPath.section])
             update(false)
         }
         let image = UIImage(systemName: "square.and.pencil")
@@ -78,7 +74,6 @@ extension TrackingScreenViewController: UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
         let delete = UIContextualAction(style: .destructive, title: "Delete") {
             action, view , delete in
             let record = self.records[indexPath.section]

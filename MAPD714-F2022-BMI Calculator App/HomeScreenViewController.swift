@@ -64,6 +64,12 @@ class HomeScreenViewController: UIViewController {
     
     func resetScreen () {
         nameField.text = ""
+        ageField.text = ""
+        genderField.text = ""
+        weightField.text = ""
+        heightField.text = ""
+        bmiScoreField.text = ""
+        bmiCategoryField.text = ""
     }
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
@@ -82,8 +88,13 @@ class HomeScreenViewController: UIViewController {
     
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
         
-        weight = Double(weightField.text!)!
-        height = Double(heightField.text!)!
+        if weightField.text != "" {
+            weight = Double(weightField.text!)!
+        }
+        
+        if heightField.text != "" {
+            height = Double(heightField.text!)!
+        }
         
         if (unitSwitch.isOn) {
             //Imperial Calculation
@@ -106,8 +117,8 @@ class HomeScreenViewController: UIViewController {
             }
         }
         
-        if (nameField.text != "") {
-            let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: Double(weightField.text!)!, height: Double(heightField.text!)!, date: date, unitSelected: unitSwitchVal, bmiVal: bmiVal)
+        if (nameField.text != "" && ageField.text != "" && genderField.text != "" && weight != 0.0 && height != 0.0 && date != "" && unitSwitchVal != "") {
+            let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: weight, height: height, date: date, unitSelected: unitSwitchVal, bmiVal: bmiVal)
             records.append(record)
         }
         AppDelegate.shared.saveContext()
