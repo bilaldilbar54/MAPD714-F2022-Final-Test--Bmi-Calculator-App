@@ -13,7 +13,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var bmiLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-
+    
     var record: BmiRecord?
     
     func set(weight: String, bmi: String, date: String) {

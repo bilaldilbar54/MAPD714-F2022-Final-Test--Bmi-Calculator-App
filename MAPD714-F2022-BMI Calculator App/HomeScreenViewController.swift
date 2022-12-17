@@ -10,6 +10,7 @@ import UIKit
 
 class HomeScreenViewController: UIViewController {
     
+    //Outlets
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var genderField: UITextField!
@@ -30,10 +31,12 @@ class HomeScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Setting the switch to off at startup
         unitSwitch.isOn = false
         bmiScoreField.text = ""
         bmiCategoryField.text = ""
         
+        //Getting the current date & time
         let now = Date()
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
@@ -42,6 +45,7 @@ class HomeScreenViewController: UIViewController {
         date = dateString
     }
     
+    //Function to calculate the bmi category
     func bmiCategory (bmiVal: Double) {
         if (bmiVal < 16) {
             bmiCategoryField.text = "Severe Thinness"
@@ -62,6 +66,7 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    //Function to reset the screen
     func resetScreen () {
         nameField.text = ""
         ageField.text = ""
@@ -72,10 +77,12 @@ class HomeScreenViewController: UIViewController {
         bmiCategoryField.text = ""
     }
     
+    //Reset button pressed function
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         resetScreen()
     }
     
+    //Function checking if the value of switch is changed
     @IBAction func switchValueChanged(_ sender: UISwitch) {
         if (!unitSwitch.isOn) {
             weightField.attributedPlaceholder = NSAttributedString(string: "Weight in Kg")
@@ -86,8 +93,8 @@ class HomeScreenViewController: UIViewController {
         }
     }
     
+    //Calculate button pressed function
     @IBAction func calculateButtonPressed(_ sender: UIButton) {
-        
         if weightField.text != "" {
             weight = Double(weightField.text!)!
         }
@@ -117,11 +124,18 @@ class HomeScreenViewController: UIViewController {
             }
         }
         
+        //Creating the new record in the core data
         if (nameField.text != "" && ageField.text != "" && genderField.text != "" && weight != 0.0 && height != 0.0 && date != "" && unitSwitchVal != "") {
             let record = AppDelegate.shared.bmi(name: nameField.text!, age: Int16(ageField.text!)!, gender: genderField.text!, weight: weight, height: height, date: date, unitSelected: unitSwitchVal, bmiVal: bmiVal)
             records.append(record)
         }
         AppDelegate.shared.saveContext()
     }
+    
+    //Done button pressed function
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        resetScreen()
+    }
+    
 }
 

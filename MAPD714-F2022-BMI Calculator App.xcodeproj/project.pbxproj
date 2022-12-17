@@ -75,15 +75,15 @@
 				856D138B29465E3C00FDD3B9 /* ViewController.swift */,
 				856D139E29466BD700FDD3B9 /* HomeScreenViewController.swift */,
 				856D13A02946D17300FDD3B9 /* TrackingScreenViewController.swift */,
+				858B5083294BC6020097E0FD /* NewRecordViewController.swift */,
+				858B5085294BCB820097E0FD /* UpdateRecordViewController.swift */,
 				856D13A22946D76700FDD3B9 /* CustomTableViewCell.swift */,
+				856D13A4294AC5FC00FDD3B9 /* BmiRecord.swift */,
 				856D138D29465E3C00FDD3B9 /* Main.storyboard */,
 				856D139329465E3D00FDD3B9 /* Assets.xcassets */,
 				856D139529465E3D00FDD3B9 /* LaunchScreen.storyboard */,
 				856D139829465E3D00FDD3B9 /* Info.plist */,
 				856D139029465E3C00FDD3B9 /* MAPD714_F2022_BMI_Calculator_App.xcdatamodeld */,
-				856D13A4294AC5FC00FDD3B9 /* BmiRecord.swift */,
-				858B5083294BC6020097E0FD /* NewRecordViewController.swift */,
-				858B5085294BCB820097E0FD /* UpdateRecordViewController.swift */,
 			);
 			path = "MAPD714-F2022-BMI Calculator App";
 			sourceTree = "<group>";

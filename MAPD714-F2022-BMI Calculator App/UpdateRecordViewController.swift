@@ -14,6 +14,7 @@ protocol UpdateRecordViewControllerDelegate {
 
 class UpdateRecordViewController: UIViewController {
     
+    //Outlet
     @IBOutlet weak var updateWeightText: UITextField!
     
     var record: BmiRecord?
@@ -27,10 +28,12 @@ class UpdateRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //Assigning unit value selected
         unitSwitchVal = (record?.unitSelected!)!
+        //Assigning weight value selected
         updateWeightText.text = String(record!.weight)
-        print(unitSwitchVal)
         
+        //Getting the current date & time
         let now = Date()
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
@@ -39,12 +42,15 @@ class UpdateRecordViewController: UIViewController {
         date = dateString
     }
     
-
+    //Update button pressed function
     @IBAction func updateButtonClicked(_ sender: UIButton) {
-        weight = Double(updateWeightText.text!)!
+        if updateWeightText.text != "" {
+            weight = Double(updateWeightText.text!)!
+        }
         height = record!.height
         
         if (unitSwitchVal == "Metric") {
+            //For Metric Calculation
             if (weight != 0.0 && height != 0.0) {
                 let heightMtr = height / 100
                 bmiVal = (weight) / (heightMtr * heightMtr)
@@ -54,6 +60,7 @@ class UpdateRecordViewController: UIViewController {
                 record?.bmiVal = bmiVal
             }
         } else {
+            //For Imperial Calculation
             if (weight != 0.0 && height != 0.0) {
                 bmiVal = ((weight * 703) / (height * height))
                 bmiVal = (ceil(bmiVal * 1000)) / 1000

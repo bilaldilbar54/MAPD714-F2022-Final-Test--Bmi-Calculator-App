@@ -10,8 +10,10 @@ import UIKit
 
 class NewRecordViewController: UIViewController {
     
+    //Outlets
     @IBOutlet weak var newWeightTextField: UITextField!
     @IBOutlet weak var newHeightTextField: UITextField!
+    @IBOutlet weak var newUnitSwitch: UISwitch!
     
     var records: [BmiRecord] = []
     var weight: Double = 0.0
@@ -24,9 +26,10 @@ class NewRecordViewController: UIViewController {
         super.viewDidLoad()
         
         records = AppDelegate.shared.record()
+        //Setting the switch to off at startup
+        newUnitSwitch.isOn = false
         
-        unitSwitchVal = "Metric"
-        
+        //Getting the current date & time
         let now = Date()
         let formatter = DateFormatter()
         formatter.timeZone = TimeZone.current
@@ -35,6 +38,18 @@ class NewRecordViewController: UIViewController {
         date = dateString
     }
     
+    //Function checking if the value of switch is changed
+    @IBAction func newUnitSwitchValueChanged(_ sender: UISwitch) {
+        if (!newUnitSwitch.isOn) {
+            newWeightTextField.attributedPlaceholder = NSAttributedString(string: "Weight in Kg")
+            newHeightTextField.attributedPlaceholder = NSAttributedString(string: "Height in Cm")
+        } else {
+            newWeightTextField.attributedPlaceholder = NSAttributedString(string: "Weight in Lbs")
+            newHeightTextField.attributedPlaceholder = NSAttributedString(string: "Height in Inches")
+        }
+    }
+    
+    //Submit button pressed function
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if newWeightTextField.text != "" {
             weight = Double(newWeightTextField.text!)!
@@ -44,14 +59,26 @@ class NewRecordViewController: UIViewController {
             height = Double(newHeightTextField.text!)!
         }
         
-        if (weight != 0.0 && height != 0.0) {
-            let heightMtr = height / 100
-            bmiVal = (weight / (heightMtr * heightMtr))
-            bmiVal = (ceil(bmiVal * 1000)) / 1000
-            
-            let record = AppDelegate.shared.bmiNew(weight: weight, height: height, date: date, bmiVal: bmiVal, unitSelected: unitSwitchVal)
-            records.append(record)
-            AppDelegate.shared.saveContext()
+        if (newUnitSwitch.isOn) {
+            //Imperial Calculation
+            unitSwitchVal = "Imperial"
+            if (weight != 0.0 && height != 0.0) {
+                bmiVal = ((weight * 703) / (height * height))
+                bmiVal = (ceil(bmiVal * 1000)) / 1000
+            }
+        } else {
+            //Metric Calculation
+            unitSwitchVal = "Metric"
+            if (weight != 0.0 && height != 0.0) {
+                let heightMtr = height / 100
+                bmiVal = (weight / (heightMtr * heightMtr))
+                bmiVal = (ceil(bmiVal * 1000)) / 1000
+            }
         }
+            
+        //Appending the new record to the core data
+        let record = AppDelegate.shared.bmiNew(weight: weight, height: height, date: date, bmiVal: bmiVal, unitSelected: unitSwitchVal)
+        records.append(record)
+        AppDelegate.shared.saveContext()
     }
 }
